@@ -32,6 +32,7 @@ export default HomePage;
 
 export async function generateStaticParams() {
     const res = await fetch(`${process.env.API_URL}/api/products`, {
+        cache: "force-cache",
         next: {
             revalidate: 5,
         },

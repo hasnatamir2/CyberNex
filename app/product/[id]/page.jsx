@@ -1,5 +1,4 @@
 import ProductDetails from "@/components/products/ProductDetails";
-import { notFound } from "next/navigation";
 import mongoose from "mongoose";
 import { redirect } from "next/navigation";
 import React from "react";

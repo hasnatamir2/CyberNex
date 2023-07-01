@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { createContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const CartContext = createContext();
 
@@ -56,6 +57,7 @@ export const CartProvider = ({ children }) => {
     }
 
     localStorage.setItem("cart", JSON.stringify({ cartItems: newCartItems }));
+    toast.success("Item added to cart");
     setCartToState();
   };
 
@@ -63,6 +65,7 @@ export const CartProvider = ({ children }) => {
     const newCartItems = cart?.cartItems?.filter((i) => i.product !== id);
 
     localStorage.setItem("cart", JSON.stringify({ cartItems: newCartItems }));
+    toast.warn("Item removed from cart");
     setCartToState();
   };
 
