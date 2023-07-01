@@ -31,27 +31,16 @@ export default ProductDetailsPage;
 
 export async function generateMetadata({ params }) {
     const product = await getProductDetails(params?.id)
-    
-    if (!product) return notFound();
-
 
     const metadata = {
         title: product?.name,
         description: product?.description,
-        image: product?.image,
-        robots: {
-            index: hide,
-            follow: hide,
-            googleBot: {
-                index: hide,
-                follow: hide,
-            },
-        },
-        openGraph: product.image
+        image: product?.images[0].url,
+        openGraph: product?.images[0]
             ? {
                   images: [
                       {
-                          url: product?.image,
+                          url: product?.images[0].url,
                           width: 300,
                           height: 300,
                           alt: product?.name,
