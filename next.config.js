@@ -10,9 +10,9 @@ const nextConfig = {
 
     NEXTAUTH_URL: "http://localhost:3000",
 
-    CLOUD_NAME: "duiggbjad",
-    CLOUDINARY_API_KEY: "833299381449851",
-    CLOUDINARY_API_SECRET: "X9jmJshtejdqrwr_g4vfIAmcCvo",
+    CLOUD_NAME: "",
+    CLOUDINARY_API_KEY: "",
+    CLOUDINARY_API_SECRET: "",
 
     STRIPE_PUBLIC_KEY: "",
     STRIPE_PRIVATE_KEY: "",
