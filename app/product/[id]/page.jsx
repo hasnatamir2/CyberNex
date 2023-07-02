@@ -10,6 +10,7 @@ const getProductDetails = async (id) => {
             revalidate: 5,
         },
     });
+    if(res.headers["content-type"] == "text/html") return null
     const data = await res.json();
     return data?.product;
 };
@@ -52,16 +53,16 @@ export async function generateMetadata({ params }) {
     return metadata;
 }
 
-export async function generateStaticParams() {
-    const res = await fetch(`${process.env.API_URL}/api/products`, {
-        cache: "force-cache",
-        next: {
-            revalidate: 5,
-        },
-    });
-    const data = await res.json();
+// export async function generateStaticParams() {
+//     const res = await fetch(`${process.env.API_URL}/api/products`, {
+//         cache: "force-cache",
+//         next: {
+//             revalidate: 5,
+//         },
+//     });
+//     const data = await res.json();
 
-    const paths = data?.products.map((product) => ({ id: product?._id }));
+//     const paths = data?.products.map((product) => ({ id: product?._id }));
 
-    return paths;
-}
+//     return paths;
+// }
