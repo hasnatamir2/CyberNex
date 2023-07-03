@@ -12,6 +12,7 @@ const getProduct = async (id) => {
             revalidate: 5,
         },
     });
+    if(!res.ok) return { product: null };
     if(res.headers["content-type"] === "text/html") return null
     const data = res.json();
     return data;

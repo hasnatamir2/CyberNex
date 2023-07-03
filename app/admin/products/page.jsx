@@ -20,6 +20,7 @@ const getProducts = async (searchParams) => {
       }
     }
   );
+  if(!res.ok) return { products: [] };
   const data = await res.json();
   return data;
 };
