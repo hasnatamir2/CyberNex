@@ -4,13 +4,8 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 const getProductDetails = async (id) => {
-    const res = await fetch(`${process.env.API_URL}/api/products/${id}`, {
-        cache: "force-cache",
-        next: {
-            revalidate: 5,
-        },
-    });
-    if(res.headers["content-type"] == "text/html") return null
+    const res = await fetch(`${process.env.API_URL}/api/products/${id}`, {});
+    if (res.headers["content-type"] == "text/html") return null;
     const data = await res.json();
     return data?.product;
 };
@@ -30,7 +25,7 @@ const ProductDetailsPage = async ({ params }) => {
 export default ProductDetailsPage;
 
 export async function generateMetadata({ params }) {
-    const product = await getProductDetails(params?.id)
+    const product = await getProductDetails(params?.id);
 
     const metadata = {
         title: product?.name,
