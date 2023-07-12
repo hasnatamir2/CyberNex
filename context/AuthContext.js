@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
 
-      const { data } = await axios.get("/api/auth/session?update", {
+      const { data } = await axios.get(`${process.env.API_URL}/api/auth/session?update`, {
         next: {
           revalidate: 5
         }
