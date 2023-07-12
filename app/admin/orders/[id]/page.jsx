@@ -9,17 +9,20 @@ const getOrder = async (id) => {
 
     const nextAuthSessionToken = nextCookies.get("next-auth.session-token");
 
-    const res = await fetch(`${process.env.API_URL}/api/admin/orders/${id}`, {
-        headers: {
-            Cookie: `next-auth.session-token=${nextAuthSessionToken?.value}`,
-        },
-        cache: "force-cache",
-        next: {
-            revalidate: 5,
-        },
-    });
+    const { data } = await axios.get(
+        `${process.env.API_URL}/api/admin/orders/${id}`,
+        {
+            headers: {
+                Cookie: `next-auth.session-token=${nextAuthSessionToken?.value}`,
+            },
+            cache: "force-cache",
+            next: {
+                revalidate: 5,
+            },
+        }
+    );
 
-    const data = await res.json();
+    // const data = await res.json();
     return data;
 };
 

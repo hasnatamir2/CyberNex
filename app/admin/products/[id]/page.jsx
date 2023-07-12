@@ -4,10 +4,10 @@ import axios from "axios";
 import UpdateProduct from "@/components/admin/UpdateProduct";
 
 const getProduct = async (id) => {
-    const res = await fetch(`${process.env.API_URL}/api/products/${id}`, {});
-    if (!res.ok) return { product: null };
-    if (res.headers["content-type"] === "text/html") return null;
-    const data = res.json();
+    const { data } = await axios.get(`${process.env.API_URL}/api/products/${id}`, {});
+    // if (!res.ok) return { product: null };
+    // if (res.headers["content-type"] === "text/html") return null;
+    // const data = res.json();
     return data;
 };
 

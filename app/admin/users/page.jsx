@@ -16,7 +16,7 @@ const getUsers = async (searchParams) => {
 
     const searchQuery = queryString.stringify(urlParams);
 
-    const res = await fetch(
+    const { data } = await axios.get(
         `${process.env.API_URL}/api/admin/users?${searchQuery}`,
         {
             headers: {
@@ -29,7 +29,7 @@ const getUsers = async (searchParams) => {
         }
     );
 
-    const data = await res.json();
+    // const data = await res.json();
     return data;
 };
 

@@ -2,11 +2,13 @@ import ProductDetails from "@/components/products/ProductDetails";
 import mongoose from "mongoose";
 import { redirect } from "next/navigation";
 import React from "react";
+import axios from "axios";
+
 
 const getProductDetails = async (id) => {
-    const res = await fetch(`${process.env.API_URL}/api/products/${id}`, {});
-    if (res.headers["content-type"] == "text/html") return null;
-    const data = await res.json();
+    const { data } = await axios.get(`${process.env.API_URL}/api/products/${id}`, {});
+    // if (res.headers["content-type"] == "text/html") return null;
+    // const data = await res.json();
     return data?.product;
 };
 

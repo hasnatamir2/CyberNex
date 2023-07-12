@@ -9,7 +9,7 @@ const getAddresses = async () => {
 
     const nextAuthSessionToken = nextCookies.get("next-auth.session-token");
 
-    const res = await fetch(`${process.env.API_URL}/api/address`, {
+    const { data } = await axios.get(`${process.env.API_URL}/api/address`, {
         headers: {
             Cookie: `next-auth.session-token=${nextAuthSessionToken?.value}`,
         },
@@ -18,7 +18,7 @@ const getAddresses = async () => {
             revalidate: 30,
         },
     });
-    const data = await res.json();
+    // const data = await res.json();
 
     return data?.addresses;
 };

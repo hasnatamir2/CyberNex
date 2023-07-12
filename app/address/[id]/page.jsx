@@ -9,13 +9,16 @@ const getAddress = async (id) => {
 
     const nextAuthSessionToken = nextCookies.get("next-auth.session-token");
 
-    const res = await fetch(`${process.env.API_URL}/api/address/${id}`, {
-        headers: {
-            Cookie: `next-auth.session-token=${nextAuthSessionToken?.value}`,
-        },
-    });
+    const { data } = await axios.get(
+        `${process.env.API_URL}/api/address/${id}`,
+        {
+            headers: {
+                Cookie: `next-auth.session-token=${nextAuthSessionToken?.value}`,
+            },
+        }
+    );
 
-    const data = await res.json();
+    // const data = await res.json();
     return data?.address;
 };
 
@@ -26,4 +29,3 @@ const UpdateAddressPage = async ({ params }) => {
 };
 
 export default UpdateAddressPage;
-
