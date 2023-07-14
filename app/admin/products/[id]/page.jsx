@@ -4,10 +4,10 @@ import axios from "axios";
 import UpdateProduct from "@/components/admin/UpdateProduct";
 
 const getProduct = async (id) => {
-    const { data } = await axios.get(`${process.env.API_URL}/api/products/${id}`, {});
-    // if (!res.ok) return { product: null };
-    // if (res.headers["content-type"] === "text/html") return null;
-    // const data = res.json();
+    const { data } = await axios.get(
+        `${process.env.API_URL}/api/products/${id}`
+    );
+
     return data;
 };
 
@@ -19,16 +19,11 @@ const HomePage = async ({ params }) => {
 
 export default HomePage;
 
-export async function generateStaticParams() {
-    const { data } = await axios.get(`${process.env.API_URL}/api/products`, {
-        cache: "force-cache",
-        next: {
-            revalidate: 5,
-        },
-    });
-    // const data = await res.json();
+// export async function generateStaticParams() {
+//     const { data } = await axios.get(`${process.env.API_URL}/api/products`, {});
+//     // const data = await res.json();
 
-    const paths = data?.products.map((product) => ({ id: product?._id }));
+//     const paths = data?.products.map((product) => ({ id: product?._id }));
 
-    return paths;
-}
+//     return paths;
+// }
